@@ -41,15 +41,25 @@ reset_pins = {}
 students = db["students"]
 advisors = db["advisors"]
 
-# return all student
-all_students = list(students.find())
-student_id = '202101234'
+from bson.objectid import ObjectId
 
-# return single document student
-student = students.find_one({"student_id": student_id})
+def student_required():
+    return "user_id" in session and session.get("role") == "student"
+
+def advisor_required():
+    return "user_id" in session and session.get("role") == "advisor"
 
 
+def get_logged_user():
+    if "user_id" not in session:
+        return None
 
+    user_id = session["user_id"]
+
+    if session.get("role") == "student":
+        return students.find_one({"_id": ObjectId(user_id)})
+    else:
+        return advisors.find_one({"_id": ObjectId(user_id)})
 
 
 
@@ -110,7 +120,10 @@ def login_page():
             password = request.form.get("password")
             role = request.form.get("role")
 
-            user = students.find_one({"email": email, "role": role})
+            if role == "advisor":
+                user = advisors.find_one({"email": email})
+            else:
+                user = students.find_one({"email": email})
 
             if not user:
                 flash("User not found")
@@ -176,7 +189,10 @@ def register_page():
             "role": role   
         }
 
-        students.insert_one(user)
+        if role == "advisor":
+            advisors.insert_one(user)
+        else:
+            students.insert_one(user)
 
         print(user)  
 
@@ -295,7 +311,13 @@ def student_dashboard_page():
     if "user_id" not in session:
         return redirect(url_for("login_page"))
 
-    user = students.find_one({"email": session["email"]})
+    #user = students.find_one({"email": session["email"]})
+
+    # Visuals
+
+
+
+    user = get_logged_user()
 
     return render_template("student-dashboard-page.html", user=user)
 
@@ -305,8 +327,14 @@ def student_dashboard_page():
 @app.route("/student-transcript-page/")
 def student_transcript_page():
     if not student_required():
-            return redirect(url_for("login_page"))
-    return render_template("student-transcript-page.html", )
+        return redirect(url_for("login_page"))
+
+    user = get_logged_user()
+
+    return render_template(
+        "student-transcript-page.html",
+        transcript=user.get("transcript", [])
+    )
 
 
 
@@ -316,8 +344,13 @@ def student_transcript_page():
 def student_schedule_page():
     if not student_required():
         return redirect(url_for("login_page"))
-    
-    return render_template("student-schedule-page.html", student=student)
+
+    user = get_logged_user()
+
+    return render_template(
+        "student-schedule-page.html",
+        schedule=user.get("schedule", [])
+    )
 
 
 
@@ -329,7 +362,12 @@ def student_notification_page():
     if not student_required():
         return redirect(url_for("login_page"))
 
-    return render_template("student-notification-page.html" )
+    user = get_logged_user()
+
+    return render_template(
+        "student-notification-page.html",
+        user=user
+    )
 
 
 
@@ -340,7 +378,12 @@ def student_settings_page():
     if not student_required():
         return redirect(url_for("login_page"))
 
-    return render_template("student-settings-page.html" )
+    user = get_logged_user()
+
+    return render_template(
+        "student-settings-page.html",
+        user=user
+    )
 
 
 
@@ -353,7 +396,14 @@ def advisor_students_list_page():
     if not advisor_required():
         return redirect(url_for("login_page"))
 
-    return render_template("advisor-students-list-page.html" )
+    user = get_logged_user()
+    students_list = list(students.find())
+
+    return render_template(
+        "advisor-students-list-page.html",
+        user=user,
+        students=students_list
+    )
 
 
 
@@ -364,8 +414,12 @@ def advisor_student_performance_cards():
     if not advisor_required():
         return redirect(url_for("login_page"))
 
-    return render_template("advisor-student-performance-cards.html" )
+    user = get_logged_user()
 
+    return render_template(
+        "advisor-student-performance-cards.html",
+        user=user
+    )
 
 
 
@@ -376,7 +430,12 @@ def advisor_student_performance_page():
     if not advisor_required():
         return redirect(url_for("login_page"))
 
-    return render_template("advisor-student-performance-page.html" )
+    user = get_logged_user()
+
+    return render_template(
+        "advisor-student-performance-page.html",
+        user=user
+    )
 
 
 
@@ -388,18 +447,25 @@ def advisor_notification_page():
     if not advisor_required():
         return redirect(url_for("login_page"))
 
-    return render_template("advisor-notification-page.html" )
+    user = get_logged_user()
+
+    return render_template(
+        "advisor-notification-page.html",
+        user=user
+    )
 
 
 
 
 
 @app.route("/advisor-settings-page/")
-def adviso_settings_page():
+def advisor_settings_page():
     if not advisor_required():
         return redirect(url_for("login_page"))
 
-    return render_template("advisor-settings-page.html" )
+    user = get_logged_user()
+
+    return render_template("advisor-settings-page.html", user=user)
 
 
 

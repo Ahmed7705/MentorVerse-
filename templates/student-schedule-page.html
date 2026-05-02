@@ -17,7 +17,7 @@
         <div class="student-box">
           <div class="avatar">S</div>
           <div class="student-info">
-            <h4>Welcome, {{ student.name | default('Student') }}</h4>
+            <h4>Welcome, {{ firstname | default('Student') }}</h4>
             <p>Academic Year 2026</p>
           </div>
         </div>
@@ -31,7 +31,6 @@
         </nav>
       </div>
 
-           <!-- {{ student.cumulative_gpa }}--> 
         
     </aside>
 
@@ -44,8 +43,8 @@
 
           <div class="top-profile">
             <div class="top-profile-text">
-              <strong> {{ student.name | default('Student Name') }} </strong>
-              <span>ID: {{ student.student_id | default('202101234') }}</span>
+              <strong> {{ firstname | default('Student Name') }} </strong>
+              <span>ID: {{ university_id | default('202101234') }}</span>
             </div>
             <div class="mini-avatar">S</div>
           </div>
