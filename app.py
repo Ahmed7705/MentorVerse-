@@ -182,6 +182,23 @@ def register_page():
         }
 
         if role == "advisor":
+                    
+            inserted_user = {
+
+            "aid": "ad",
+            "Fname": firstname,
+            "Lname": lastname,
+            "email": email,
+            "advisor_id": university_id,
+            "password": generate_password_hash(password),
+            "advisor_students": ["st1", "st2", "st3"],
+            "role": role ,
+            "office": "Building A, Room 101",
+            "bio": "Senior lecturer in AI and software engineering with 10 years of teaching experience.",
+            "gender": "Female"  
+
+            }
+
             advisors.insert_one(user)
         else:
             students.insert_one(user)
