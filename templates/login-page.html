@@ -27,20 +27,20 @@
           <button class="role-btn" type="button">Advisor</button>
         </div>
 
-        <form class="login-form" action="/student-dashboard">
+        <form class="login-form" action="/login-page/" method="POST">
           <label class="form-label">ACADEMIC EMAIL</label>
           <div class="input-wrap">
-            <input type="email" placeholder="name@university.edu.sa" required />
+            <input type="email" name="email" placeholder="name@university.edu.sa" required />
             <span class="input-icon">✉</span>
           </div>
 
           <div class="password-row">
             <label class="form-label">SECURITY PASSWORD</label>
-            <a href="/forgot-password" class="forgot-link">Forgot password?</a>
+            <a href="/forgot-password-page/" class="forgot-link">Forgot password?</a>
           </div>
 
           <div class="input-wrap">
-            <input type="password" placeholder="••••••••••" required />
+            <input type="password" name="password" placeholder="••••••••••" required />
             <span class="input-icon">👁</span>
           </div>
 
@@ -49,9 +49,26 @@
             <span>Remember me on this device</span>
           </label>
 
+          <input type="hidden" name="role" id="roleInput" value="student">
+
+
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <div class="alert-container">
+                {% for msg in messages %}
+                  <div class="alert-error">
+                    ⚠️ {{ msg }}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+
+
           <button class="btn btn-primary login-submit" type="submit">
             Sign in to Portal
           </button>
+          
         </form>
 
         <p class="register-note">
@@ -104,6 +121,38 @@
     </section>
 
   </main>
+
+
+
+
+  <script>
+  const roleButtons = document.querySelectorAll(".role-btn");
+  const roleInput = document.getElementById("roleInput");
+
+  roleButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+      roleButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (btn.textContent.trim() === "Student") {
+        roleInput.value = "student";
+      } else {
+        roleInput.value = "advisor";
+      }
+    });
+  });
+  </script>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
