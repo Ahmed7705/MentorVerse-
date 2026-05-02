@@ -24,16 +24,8 @@ app.secret_key = "62a758d4-460c-4220-b277-693f0502d1da"
 
 # MongoDB connection
 client = MongoClient("mongodb://localhost:27017/")
-db = client["MentorVerse"]
-
-
-
-
-
-
+db = client["MentorVerseDB"]
 reset_pins = {}
-
-
 
 
 
