@@ -1,2 +1,0 @@
-# MentorVerse Project
-i
