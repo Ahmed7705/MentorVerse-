@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='student-settings-page.css') }}">
+  
+  <title>Student Settings</title>
+
+</head>
+<body>
+  <div class="dashboard-shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">MentorVerse</div>
+
+        <div class="student-box">
+          <div class="avatar">R</div>
+          <div class="student-info">
+            <h4>Welcome, Student Name</h4>
+            <p>Academic Year 2026</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="/student-dashboard-page">Dashboard</a>
+          <a href="/student-transcript-page">Transcript</a>
+          <a href="/student-schedule-page">Schedule</a>
+          <a href="/student-notification-page">Notifications</a>
+          <a href="/student-settings-page" class="active">Settings</a>
+        </nav>
+      </div>
+      
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar-brand">MentorVerse</div>
+
+        <div class="topbar-right">
+          <span class="icon">🔔</span>
+          <span class="icon">❔</span>
+
+          <div class="top-profile">
+            <div class="top-profile-text">
+              <strong>Student Name</strong>
+              <span>ID: 202101234</span>
+            </div>
+            <div class="mini-avatar">S</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="page-head">
+        <div class="eyebrow">Student Setting Portal</div>
+        <h1>Account Settings</h1>
+        <p>Manage your profile information, security preferences, and academic targets in one place.</p>
+      </section>
+
+      <section class="settings-grid">
+        <div class="left-stack">
+          <div class="card">
+            <h2>Student Profile</h2>
+
+            <div class="form-grid">
+              <div class="field">
+                <label>Full Name</label>
+                <input type="text" value="Student Name" />
+              </div>
+
+              <div class="field">
+                <label>Student ID</label>
+                <input type="text" value="202101234" />
+              </div>
+
+              <div class="field full">
+                <label>Email Address</label>
+                <input type="email" value="202101234@stu.jazanu.edu.sa" />
+              </div>
+
+              <div class="field full">
+                <label>Bio</label>
+                <textarea>Passionate computer science student focusing on artificial intelligence, academic advising systems, and ethical digital solutions.</textarea>
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button class="primary-btn">Update Profile</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Security & Privacy</h2>
+
+            <div class="form-grid">
+              <div class="field full">
+                <label>Current Password</label>
+                <input type="password" value="12345678" />
+              </div>
+
+              <div class="field">
+                <label>New Password</label>
+                <input type="password" value="newpassword" />
+              </div>
+
+              <div class="field">
+                <label>Confirm New Password</label>
+                <input type="password" value="newpassword" />
+              </div>
+            </div>
+
+            <div class="btn-row">
+              <button class="outline-btn">Change Password</button>
+            </div>
+          </div>
+        </div>
+<!-- edit -->
+        <div class="right-stack">
+          <div class="mini-card">
+            <h3>Academic Targets</h3>
+            <div class="stat-big">3.82</div>
+            <p>Current GPA with a strong upward trend. Stay focused on your advanced modules to maintain honors status.</p>
+<!-- edit -->
+            <div class="goal-row">
+              <div class="goal-box">
+                <span>Min</span>
+                <strong>4.0</strong>
+              </div>
+              <div class="goal-box">
+                <span>Target</span>
+                <strong>4.9</strong>
+              </div>
+              <div class="goal-box">
+                <span>Max</span>
+                <strong>5.0</strong>
+              </div>
+            </div>
+          </div>
+<!-- edit -->
+          <div class="mini-card">
+            <h3>Career Path</h3>
+            <p style="margin-bottom: 14px;">Primary interests and future industry direction.</p>
+
+            <div class="field full" style="margin-bottom: 14px;">
+              <label>Primary Interests</label>
+              <div class="tag-wrap">
+                <span class="tag">Data Science</span>
+                <span class="tag">Cloud Engineering</span>
+                <span class="tag gray">+ Add Interest</span>
+              </div>
+            </div>
+<!-- edit -->
+            <div class="field full">
+              <label>Target Industry</label>
+              <select>
+                <option>Renewable Energy & Tech</option>
+                <option>Artificial Intelligence</option>
+                <option>Cybersecurity</option>
+                <option>Software Engineering</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <h4>Tip</h4>
+            <p>
+              Complete your academic and career profile to improve mentor matching
+              and unlock more relevant opportunities across the platform.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="fp-footer">
+    <div class="fp-footer-inner">
+      <div class="fp-footer-left">
+        <div class="fp-footer-brand">MentorVerse</div>
+        <p class="fp-footer-copy">
+          &copy; 2026 MENTORVERSE.
+        </p>
+      </div>
+      <div class="fp-footer-links">
+            <a href="/Home-page">HOME</a>
+            <a href="/faq-page">FAQ</a>
+            <a href="/contact-us-page">CONTACT US</a>
+            <a href="/about-us-page">ABOUT US</a>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
+</html>

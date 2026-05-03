@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Performance</title>
+  <meta name="description"
+    content="Detailed student performance analysis with GPA trends, risk indicators, and advisor recommendations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='advisor-dashboard.css') }}">
+</head>
+
+<body class="adv-page">
+
+  <div class="adv-layout">
+
+    <!-- Sidebar -->
+    <aside class="adv-sidebar">
+      <div class="adv-sidebar-brand">
+        <a href="/Home-page" class="adv-logo">MentorVerse</a>
+        <p class="adv-logo-title">Academic Progress</p>
+        <p class="adv-logo-sub">University Portal</p>
+      </div> 
+
+      <nav class="adv-sidebar-nav">
+        <a href="/advisor-students-list-page" class="adv-nav-item" id="nav-dashboard">
+          <i class="fa-solid fa-th-large"></i> Student List
+        </a>
+        <a href="/advisor-student-performance-page" class="adv-nav-item active" id="nav-performance">
+          <i class="fa-solid fa-chart-line"></i> Performance
+        </a>
+        <a href="/advisor-notification-page" class="adv-nav-item" id="nav-notifications">
+          <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+        <a href="/advisor-settings-page" class="adv-nav-item" id="nav-settings">
+          <i class="fa-solid fa-gear"></i> Settings
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <div class="adv-main">
+
+      <!-- Top Navbar -->
+      <header class="adv-topbar">
+        <div class="adv-topbar-left">
+          <a href="/Home-page" class="adv-topbar-brand">MentorVerse</a>
+        </div>
+        <div class="adv-topbar-right">
+          <span class="adv-notif-badge" id="notif-count">93</span>
+          <button class="adv-icon-btn"><i class="fa-solid fa-bell"></i></button>
+          <div class="adv-user-box">
+            <div class="adv-user-info">
+              <h4>Advisor Name</h4>
+              <p>ID: 202101234</p>
+            </div>
+            <div class="adv-user-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="adv-content">
+
+        <!-- Student Profile Header -->
+        <div class="adv-profile-header">
+          <div class="adv-profile-info">
+            <p class="adv-eyebrow light">STUDENT PROFILE ANALYSIS</p>
+            <h1 class="adv-profile-name" id="student-name">Student Name</h1>
+            <div class="adv-profile-meta">
+              <span><i class="fa-solid fa-graduation-cap"></i> Computer Science, Senior Year</span>
+              <span><i class="fa-solid fa-id-card"></i> ID: 202101234</span>
+            </div>
+          </div>
+          <div class="adv-profile-actions">
+            <button class="adv-btn-white" id="download-report-btn">
+              <i class="fa-solid fa-download"></i> Download Report
+            </button>
+            <button class="adv-btn-white-outline" id="contact-student-btn">
+              <i class="fa-solid fa-envelope"></i> Contact Student
+            </button>
+          </div>
+        </div>
+
+        <!-- Top Stats Row 4 cards  -->
+        <div class="adv-perf-stats">
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">CURRENT GPA</span>
+            <div class="adv-perf-stat-row">
+              <h2 class="green-text">3.82</h2>
+              <span class="adv-perf-sub">/4.0</span>
+            </div>
+            <span class="adv-perf-change up">+0.12 vs last term</span>
+          </div>
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">RISK SCORE</span>
+            <div class="adv-perf-stat-row">
+              <h2 class="green-text">12%</h2>
+              <span class="adv-badge-risk">LOW RISK</span>
+            </div>
+            <span class="adv-perf-change">Stable performance across<br>all core modules</span>
+          </div>
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">ATTENDANCE</span>
+            <div class="adv-perf-stat-row">
+              <h2>96.4%</h2>
+            </div>
+            <div class="adv-perf-mini-bar">
+              <div class="adv-perf-mini-fill" style="width:81%"></div>
+            </div>
+            <span class="adv-perf-change">81% Completion</span>
+          </div>
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">CREDITS EARNED</span>
+            <div class="adv-perf-stat-row">
+              <h2>114</h2>
+              <span class="adv-perf-sub">/130</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GPA Trend line chart  + Predictive Insights - AI  -->
+        <div class="adv-perf-row">
+          <div class="adv-perf-card wide">
+            <div class="adv-card-head">
+              <h3>GPA Trend over Semesters</h3>
+              <span class="adv-card-action"><i class="fa-solid fa-ellipsis"></i></span>
+            </div>
+            <div class="adv-chart-area" id="gpa-chart">
+              <div class="adv-chart-grid">
+                <div class="adv-chart-y-labels">
+                  <span>4.0</span><span>3.5</span><span>3.0</span><span>2.5</span><span>2.0</span>
+                </div>
+                <div class="adv-chart-canvas">
+                  <svg viewBox="0 0 600 200" class="adv-line-chart">
+                    <defs>
+                      <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(23,135,109,0.25)" />
+                        <stop offset="100%" stop-color="rgba(23,135,109,0)" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M30,160 Q80,150 120,130 T220,100 T320,80 T420,60 T520,30 L570,25" fill="none"
+                      stroke="#17876d" stroke-width="3" stroke-linecap="round" />
+                    <path d="M30,160 Q80,150 120,130 T220,100 T320,80 T420,60 T520,30 L570,25 L570,200 L30,200Z"
+                      fill="url(#chartGrad)" />
+                    <circle cx="30" cy="160" r="5" fill="#17876d" />
+                    <circle cx="120" cy="130" r="5" fill="#17876d" />
+                    <circle cx="220" cy="100" r="5" fill="#17876d" />
+                    <circle cx="320" cy="80" r="5" fill="#17876d" />
+                    <circle cx="420" cy="60" r="5" fill="#17876d" />
+                    <circle cx="520" cy="30" r="5" fill="#17876d" />
+                    <circle cx="570" cy="25" r="5" fill="#17876d" />
+                  </svg>
+                  <div class="adv-chart-x-labels">
+                    <span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span><span>Sem 5</span><span>Sem
+                      6</span><span>Sem 7</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="adv-perf-card narrow">
+            <div class="adv-card-head">
+              <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Predictive Insights</h3>
+            </div>
+            <div class="adv-insights-list">
+              <div class="adv-insight-item green">
+                <span class="adv-insight-label">CAREER PATH MATCH</span>
+                <p>Faisal's high scores in CS402 suggest a strong aptitude for Data Science roles. Recommendation:
+                  Invite to Research Symposium.</p>
+              </div>
+              <div class="adv-insight-item dark">
+                <span class="adv-insight-label">POTENTIAL RISK</span>
+                <p>Slight decline in Mathematics scores. Student may benefit from Academic Tutoring referral.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 cards Current Semester Performance line chart + Risk Factor circle -->
+        <div class="adv-perf-row">
+          <div class="adv-perf-card wide">
+            <div class="adv-card-head">
+              <h3>Current Semester Performance</h3>
+              <span class="adv-card-action">View All <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+            <table class="adv-course-table" id="semester-table">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Grade</th>
+                  <th>Progress</th>
+                  <th>Trend</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="adv-course-cell">
+                      <span class="adv-course-code">CS401</span>
+                      <span class="adv-course-name">Artificial Intelligence</span>
+                    </div>
+                  </td>
+                  <td><strong>A</strong></td>
+                  <td>
+                    <div class="adv-progress-bar">
+                      <div class="adv-progress-fill" style="width: 92%"></div>
+                    </div>
+                  </td>
+                  <td><span class="adv-trend up"><i class="fa-solid fa-arrow-up"></i></span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="adv-course-cell">
+                      <span class="adv-course-code">CS405</span>
+                      <span class="adv-course-name">Cloud Computing Architecture</span>
+                    </div>
+                  </td>
+                  <td><strong>A-</strong></td>
+                  <td>
+                    <div class="adv-progress-bar">
+                      <div class="adv-progress-fill" style="width: 85%"></div>
+                    </div>
+                  </td>
+                  <td><span class="adv-trend up"><i class="fa-solid fa-arrow-up"></i></span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="adv-course-cell">
+                      <span class="adv-course-code">MA301</span>
+                      <span class="adv-course-name">Advanced Linear Algebra</span>
+                    </div>
+                  </td>
+                  <td><strong>B+</strong></td>
+                  <td>
+                    <div class="adv-progress-bar">
+                      <div class="adv-progress-fill gold" style="width: 78%"></div>
+                    </div>
+                  </td>
+                  <td><span class="adv-trend flat"><i class="fa-solid fa-minus"></i></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="adv-perf-card narrow">
+            <div class="adv-card-head">
+              <h3>Risk Factor Analysis</h3>
+            </div>
+            <div class="adv-risk-dial">
+              <div class="adv-dial-ring">
+                <div class="adv-dial-inner">
+                  <h3>Stable</h3>
+                </div>
+              </div>
+              <div class="adv-dial-legend">
+                <div class="adv-dial-item">
+                  <span class="adv-dial-dot green"></span>
+                  <span>Academic: Strong</span>
+                </div>
+                <div class="adv-dial-item">
+                  <span class="adv-dial-dot blue"></span>
+                  <span>Attendance: Excellent</span>
+                </div>
+                <div class="adv-dial-item">
+                  <span class="adv-dial-dot gold"></span>
+                  <span>Engagement: Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 4 cards Second Stats Row -->
+        <div class="adv-perf-stats">
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">CURRENT GPA</span>
+            <div class="adv-perf-stat-row">
+              <h2 class="green-text">3.92</h2>
+              <span class="adv-perf-sub">/4.0</span>
+            </div>
+            <span class="adv-perf-change up"><i class="fa-solid fa-check"></i> +0.12 vs last term</span>
+          </div>
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">RISK LEVEL</span>
+            <div class="adv-perf-stat-row">
+              <h2 class="green-text">Stable</h2>
+              <span class="adv-badge-green">VERY LOW</span>
+            </div>
+            <span class="adv-perf-change">Consistent performance<br>across all metrics</span>
+          </div>
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">CREDITS COMPLETED</span>
+            <div class="adv-perf-stat-row">
+              <h2>104</h2>
+              <span class="adv-perf-sub">/132</span>
+            </div>
+            <span class="adv-perf-change">79% Completion</span>
+          </div>
+          <div class="adv-perf-stat-card">
+            <span class="adv-perf-stat-label">NEXT APPOINTMENT</span>
+            <div class="adv-perf-stat-row">
+              <h2 class="date-text">Oct 24, 2024</h2>
+            </div>
+            <span class="adv-perf-change"><i class="fa-regular fa-calendar"></i> Advising Session</span>
+          </div>
+        </div>
+
+        <!-- 3 cards Semester GPA Trends bar chart  + Academic Health Dial circle -->
+        <div class="adv-perf-row">
+          <div class="adv-perf-card wide">
+            <div class="adv-card-head">
+              <h3>Semester GPA Trends</h3>
+              <div class="adv-legend">
+                <span class="adv-legend-item"><span class="adv-legend-dot green"></span> CUMULATIVE</span>
+              </div>
+            </div>
+            <div class="adv-bar-chart" id="semester-bar-chart">
+              <div class="adv-bar-container">
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 55%"><span>3.1</span></div>
+                  <p>YEAR 1 (F)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 58%"><span>3.2</span></div>
+                  <p>YEAR 1 (S)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 62%"><span>3.35</span></div>
+                  <p>YEAR 2 (F)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 66%"><span>3.5</span></div>
+                  <p>YEAR 2 (S)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 72%"><span>3.6</span></div>
+                  <p>YEAR 3 (F)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 78%"><span>3.72</span></div>
+                  <p>YEAR 3 (S)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar" style="height: 84%"><span>3.82</span></div>
+                  <p>YEAR 4 (F)</p>
+                </div>
+                <div class="adv-bar-wrapper">
+                  <div class="adv-bar highlight" style="height: 92%"><span>3.92</span></div>
+                  <p>YEAR 4 (S)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          <div class="adv-perf-card narrow adv-stacked-cards">
+            <!-- Academic Health Dial -->
+            <div class="adv-stacked-top">
+              <div class="adv-card-head">
+                <h3>Academic Health Dial</h3>
+              </div>
+              <div class="adv-donut-wrap compact">
+                <div class="adv-donut small">
+                  <div class="adv-donut-inner small">
+                    <div>
+                      <h3>88%</h3>
+                      <span class="adv-donut-label">OPTIMAL</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="adv-donut-legend horizontal">
+                  <div><span class="adv-dial-dot green"></span> Grades</div>
+                  <div><span class="adv-dial-dot red"></span> Engagement</div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- Absences Trend (8 Weeks) -->
+            <div class="adv-stacked-bottom">
+              <div class="adv-card-head">
+                <h3>Absences Trend (8 Weeks)</h3>
+              </div>
+              <div class="adv-absences-chart">
+                <div class="adv-absences-bars">
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar" style="height: 15%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar dashed" style="height: 20%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar" style="height: 25%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar" style="height: 18%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar" style="height: 22%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar" style="height: 20%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar" style="height: 16%"></div>
+                  </div>
+                  <div class="adv-absence-bar-item">
+                    <div class="adv-absence-bar dark" style="height: 70%"></div>
+                  </div>
+                </div>
+                <div class="adv-absences-x-labels">
+                  <span>W1</span>
+                  <span>W8</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 cards Current Academic Modules & Trends + Semester Comparison -->
+        <div class="adv-perf-row">
+          <div class="adv-perf-card wide">
+            <div class="adv-card-head">
+              <h3>Current Academic Modules &amp; Trends</h3>
+              <div class="adv-legend">
+                <span class="adv-legend-item"><span class="adv-legend-dot green"></span> INCREASING</span>
+                <span class="adv-legend-item"><span class="adv-legend-dot red"></span> DECREASING</span>
+              </div>
+            </div>
+            <table class="adv-modules-table" id="modules-table">
+              <thead>
+                <tr>
+                  <th>MODULE NAME</th>
+                  <th>TYPE</th>
+                  <th>STATUS/PROGRESS</th>
+                  <th>TREND</th>
+                  <th>GRADE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="adv-module-cell">
+                      <strong>Structural Design II</strong>
+                      <span>CORE • 4 CREDITS</span>
+                    </div>
+                  </td>
+                  <td><span class="adv-type-badge technical">TECHNICAL</span></td>
+                  <td>
+                    <div class="adv-progress-bar wide-bar">
+                      <div class="adv-progress-fill" style="width: 88%"></div>
+                    </div>
+                  </td>
+                  <td><span class="adv-trend-val up"><i class="fa-solid fa-arrow-trend-up"></i> +1.2</span></td>
+                  <td><strong class="adv-grade">A+</strong></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="adv-module-cell">
+                      <strong>Differential Equations</strong>
+                      <span>THEORY • 3 CREDITS</span>
+                    </div>
+                  </td>
+                  <td><span class="adv-type-badge mathematics">MATHEMATICS</span></td>
+                  <td>
+                    <div class="adv-progress-bar wide-bar">
+                      <div class="adv-progress-fill" style="width: 72%"></div>
+                    </div>
+                  </td>
+                  <td><span class="adv-trend-val down"><i class="fa-solid fa-arrow-trend-down"></i> -0.8</span></td>
+                  <td><strong class="adv-grade">B+</strong></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="adv-module-cell">
+                      <strong>Computational Physics</strong>
+                      <span>LAB • 3 CREDITS</span>
+                    </div>
+                  </td>
+                  <td><span class="adv-type-badge experimental">EXPERIMENTAL</span></td>
+                  <td>
+                    <div class="adv-progress-bar wide-bar">
+                      <div class="adv-progress-fill" style="width: 82%"></div>
+                    </div>
+                  </td>
+                  <td><span class="adv-trend-val up"><i class="fa-solid fa-arrow-trend-up"></i> +2.4</span></td>
+                  <td><strong class="adv-grade">A</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+
+
+          <div class="adv-perf-card narrow">
+            <div class="adv-card-head">
+              <h3>Semester Comparison</h3>
+            </div>
+            <div class="adv-semester-compare">
+              <div class="adv-compare-item">
+                <div class="adv-compare-head">
+                  <span>Last Term</span>
+                  <span class="adv-compare-gpa">GPA: 3.80</span>
+                </div>
+                <div class="adv-progress-bar">
+                  <div class="adv-progress-fill green-bar" style="width: 76%"></div>
+                </div>
+              </div>
+              <div class="adv-compare-item">
+                <div class="adv-compare-head">
+                  <span>Current Term</span>
+                  <span class="adv-compare-gpa">GPA: 3.92</span>
+                </div>
+                <div class="adv-progress-bar">
+                  <div class="adv-progress-fill green-bar" style="width: 85%"></div>
+                </div>
+              </div>
+
+
+
+
+
+              <div class="adv-compare-stats">
+                <div class="adv-compare-stat">
+                  <h3 class="green-text">+3.1%</h3>
+                  <span>GROWTH</span>
+                </div>
+                <div class="adv-compare-stat">
+                  <h3>94%</h3>
+                  <span>RETENTION</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 cards Core Competency Map + Weekly Study Density -->
+        <div class="adv-perf-row">
+          <div class="adv-perf-card wide">
+            <div class="adv-card-head">
+              <h3>Core Competency Map</h3>
+            </div>
+            <div class="adv-competency-list">
+              <div class="adv-competency-item">
+                <div class="adv-competency-head">
+                  <span class="adv-competency-name">Problem Solving</span>
+                  <span class="adv-competency-level green-text">Pro (92%)</span>
+                </div>
+                <div class="adv-progress-bar wide-bar">
+                  <div class="adv-progress-fill" style="width: 92%"></div>
+                </div>
+              </div>
+              <div class="adv-competency-item">
+                <div class="adv-competency-head">
+                  <span class="adv-competency-name">Algorithmic Design</span>
+                  <span class="adv-competency-level">Mid (74%)</span>
+                </div>
+                <div class="adv-progress-bar wide-bar">
+                  <div class="adv-progress-fill gold" style="width: 74%"></div>
+                </div>
+              </div>
+              <div class="adv-competency-item">
+                <div class="adv-competency-head">
+                  <span class="adv-competency-name">Technical Communication</span>
+                  <span class="adv-competency-level green-text">Expert (88%)</span>
+                </div>
+                <div class="adv-progress-bar wide-bar">
+                  <div class="adv-progress-fill" style="width: 88%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="adv-perf-card narrow">
+            <div class="adv-card-head">
+              <h3>Weekly Study Density</h3>
+            </div>
+            <div class="adv-study-chart">
+              <div class="adv-study-bars">
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar" style="height: 55%"></div>
+                  <span>MON</span>
+                </div>
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar" style="height: 45%"></div>
+                  <span>TUE</span>
+                </div>
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar teal" style="height: 80%"></div>
+                  <span>WED</span>
+                </div>
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar teal" style="height: 90%"></div>
+                  <span>THU</span>
+                </div>
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar" style="height: 65%"></div>
+                  <span>FRI</span>
+                </div>
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar light" style="height: 40%"></div>
+                  <span>SAT</span>
+                </div>
+                <div class="adv-study-bar-item">
+                  <div class="adv-study-bar light" style="height: 30%"></div>
+                  <span>SUN</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 cards Advisor Case Notes + Formal Recommendation Editor -->
+        <div class="adv-perf-row">
+          <div class="adv-perf-card wide">
+            <div class="adv-card-head">
+              <h3>Advisor Case Notes</h3>
+              <span class="adv-card-action"><i class="fa-solid fa-circle-plus"></i> ADD NEW ENTRY</span>
+            </div>
+            <div class="adv-notes-list">
+              <div class="adv-note-item">
+                <div class="adv-note-head">
+                  <span class="adv-note-date">March 12, 2024</span>
+                  <span class="adv-note-tag orange">Mid-Term Review</span>
+                </div>
+                <p>&ldquo;Discussed career aspirations in AI. Student is very motivated but feels overwhelmed by the
+                  heavy math load this semester. Provided resource links for Linear Algebra.&rdquo;</p>
+              </div>
+              <div class="adv-note-item">
+                <div class="adv-note-head">
+                  <span class="adv-note-date">January 15, 2024</span>
+                  <span class="adv-note-tag green">Introductory Meeting</span>
+                </div>
+                <p>&ldquo;Confirmed final year project topic: 'Ethical Implications of LLMs in Arabic Education'.
+                  Approval pending from department head.&rdquo;</p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="adv-perf-card narrow">
+            <div class="adv-card-head">
+              <h3>Formal Recommendation Editor</h3>
+            </div>
+            <div class="adv-form-editor">
+              <div class="adv-form-field">
+                <label>INTERVENTION ACTION</label>
+                <select id="intervention-action">
+                  <option>Academic Tutoring Referral</option>
+                  <option>Schedule Meeting</option>
+                  <option>Academic Probation Warning</option>
+                  <option>Peer Mentoring</option>
+                </select>
+              </div>
+              <div class="adv-form-field">
+                <label>RECOMMENDATION BRIEF</label>
+                <textarea id="recommendation-brief" placeholder="Draft your recommendation here..."></textarea>
+              </div>
+              <div class="adv-form-actions">
+                <button class="adv-btn-discard" id="discard-btn">Discard</button>
+                <button class="adv-btn-submit" id="submit-report-btn">Submit Official Report</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+      
+      <!-- Footer -->
+      <footer class="adv-footer">
+        <div class="adv-footer-inner">
+          <div class="adv-footer-left">
+            <div class="adv-footer-brand">MentorVerse</div>
+            <p>&copy; 2026 MENTORVERSE. SAUDI ACADEMIC EXCELLENCE.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>

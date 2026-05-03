@@ -1,0 +1,17 @@
+{
+  "student1": [
+    "AI Fundamentals (NG, 0 absences) and Machine Learning Intro (NG, 1 absence): contact both instructors this week to confirm if NGs are incompletes and get exact make-up deadlines; if not recoverable, re-enroll next term and adjust your load to prioritize these.",
+    "Operating Systems: A with 4 absences—verify your department’s absence limit and, for the next systems course, reserve a fixed buffer around class so you keep absences <=2.",
+    "Software Engineering: B+ with 0 absences indicates performance, not attendance, held you back—review rubric deductions (testing/design) with the instructor and rewrite one project component before taking the follow-up."
+  ],
+  "student2": [
+    "Retake Control Systems (D+) before Robotics II (D+); remediate Laplace/Bode/PID first, since weak controls likely drove the robotics grade.",
+    "Repeat Mechatronics (D) and Fluid Mechanics (D) next term; Ds usually do not satisfy ME prerequisites and will stall capstone sequencing.",
+    "Fluid Mechanics had your only absence (1): meet the instructor to review that exact missed unit and assign targeted problems before the retake."
+  ],
+  "student3": [
+    "For Operating Systems and Database Systems (NG, 0 absences), email each instructor now to identify any missing labs/exams and the deadline to convert NGs to letter grades (cc the department/registrar).",
+    "Statistics (C, 4 absences): stop further absences, attend the next two office hours to review material from missed classes, and begin weekly tutoring until the next exam.",
+    "Confirm the CS program’s minimum Statistics grade; if a C falls short for ML/AI or Data Science electives, schedule a retake next term and delay those electives until the grade improves."
+  ]
+}

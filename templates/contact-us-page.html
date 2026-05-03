@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact us</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">MentorVerse</div>
+
+      <nav class="nav-links">
+        <a href="/Home-page">Home</a>
+        <a href="/faq-page">FAQ</a>
+        <a href="/contact-us-page">Contact us</a>
+        <a href="/about-us-page">About us</a>
+      </nav> 
+
+      <div class="nav-actions">
+        <a href="/login-page" class="login-link">Login</a>
+        <a href="/register-page" class="btn btn-primary small-btn">Register</a>
+      </div>
+    </div>
+  </header>
+
+<!-- Hero -->
+<section class="hero">
+    <p class="small">CONTACT US</p>
+    <h1>
+        We're Here to Support Your <br>
+        <span>Academic Journey</span>
+    </h1>
+    <p class="desc">
+        Whether you are a student seeking guidance 
+        or an academic advisor wanting to share 
+        your experience.
+    </p>
+</section>
+
+<!-- Main -->
+<div class="contact-wrapper">
+
+    <!-- Form -->
+    <div class="card big">
+        <form onsubmit="sendMessage(event)">
+
+            <div class="row">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <select>
+                <option>General Inquiry</option>
+            </select>
+
+            <textarea placeholder="Your Message"></textarea>
+
+            <button class="btn big-btn">Submit Inquiry →</button>
+
+        </form>
+    </div>
+
+    <!-- Right Side -->
+    <div class="side">
+
+        <h4 class="muted">PROCESS STEPS</h4>
+
+        <div class="step">
+            <span>1</span>
+            <div>
+                <b>Submit Inquiry</b>
+                <p>Fill out the form and send your message.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span>2</span>
+            <div>
+                <b>Review & Analysis</b>
+                <p>We review your inquiry.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <span>3</span>
+            <div>
+                <b>Rapid Response</b>
+                <p>We reply within 24 hours.</p>
+            </div>
+        </div>
+
+        <div class="card green">
+            <h3>Direct Channels</h3>
+            <p>support@mentorverse.sa</p>
+            <p>+966 800 123 4567</p>
+            <p>Riyadh, Saudi Arabia</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- MAP SECTION -->
+<div class="map">
+    <div class="map-box">
+        <h4>Head Office</h4>
+        <p>Riyadh, Al Nakheel Dist, King Fahd Rd</p>
+    </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div>
+            <h2>MentorVerse</h2>
+            <p>A leading platform connecting students with advisors.</p>
+            <p>© 2026 MENTORVERSE</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="/Home-page">HOME</a>
+            <a href="/faq-page">FAQ</a>
+            <a href="/contact-us-page">CONTACT US</a>
+            <a href="/about-us-page">ABOUT US</a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
