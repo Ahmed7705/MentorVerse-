@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MentorVerse</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #edf6f6;
+    display: flex;
+    min-height: 100vh;
+    color: #102027;
+}
+
+.sidebar {
+    width: 230px;
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+    color: #2f7f69;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    background: #f4f7f7;
+}
+
+.menu a.active {
+    background: #2f7f69;
+    color: #ffffff;
+}
+
+.page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 72px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 28px;
+    gap: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.topbar-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2f7f69;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.topbar-divider {
+    width: 1px;
+    height: 40px;
+    background: #d9e8e4;
+}
+
+.topbar-user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.topbar-user-text {
+    text-align: right;
+    line-height: 1.2;
+}
+
+.topbar-user-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.topbar-user-id {
+    font-size: 14px;
+    color: #5f6b6b;
+    margin-top: 4px;
+}
+.topbar-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #d7e7e2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 3px;
+}
+
+.topbar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.topbar-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.main {
+    flex: 1;
+    padding: 18px 34px 30px 34px;
+}
+
+.small-label {
+    color: #2f7f69;
+    font-size: 24px;
+    letter-spacing: 5px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.title {
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 800;
+    margin: 0 0 28px 0;
+    color: #0e1f26;
+}
+
+.header-zone {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    max-width: 860px;
+}
+
+.info-text {
+    width: 310px;
+    color: #475569;
+    font-size: 23px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.filter-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-width: 0;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    width: 100%;
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-left: 0;
+}
+
+.filters button {
+    border: none;
+    background: transparent;
+    color: #27343a;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.filters button.active {
+    background: #2f7f69;
+    color: #ffffff;
+    padding: 16px 30px;
+    border-radius: 18px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.mark-read {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2f7f69;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.mark-read i {
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.filter-line {
+    width: 100%;
+    height: 3px;
+    background: #d8e6e5;
+    margin-top: 18px;
+}
+
+.today-label {
+    margin-top: 34px;
+    color: #7b8b91;
+    font-size: 14px;
+    letter-spacing: 1.8px;
+    font-weight: 700;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px 22px 22px 20px;
+    margin-top: 18px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    position: relative;
+}
+
+.card.green-border {
+    border-left: 5px solid #2f7f69;
+}
+
+.notification-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.card-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf8f4;
+    color: #2f7f69;
+    font-size: 18px;
+}
+
+.card-icon.blue {
+    background: #eef5ff;
+    color: #4b83d1;
+}
+
+.card-content {
+    flex: 1;
+    padding-right: 90px;
+}
+
+.card-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    line-height: 1.2;
+    color: #15242b;
+}
+
+.card-text {
+    margin: 0;
+    color: #697981;
+    font-size: 19px;
+    line-height: 1.5;
+}
+
+.time {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #f3f7f8;
+    color: #7a8a92;
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 16px;
+    background: #2f7f69;
+    color: #ffffff;
+    padding: 7px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.action-link {
+    margin-left: 16px;
+    color: #2f7f69;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.right-panel {
+    width: 320px;
+    padding: 24px 30px 30px 0;
+}
+
+.panel-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    margin-bottom: 20px;
+}
+
+.panel-small {
+    color: #6b7c84;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.button {
+    background: #2f7f69;
+    color: #ffffff;
+    border: none;
+    padding: 13px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.panel-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.panel-card p {
+    margin: 0 0 6px 0;
+}
+
+.panel-card ul {
+    margin: 10px 0 0 0;
+    padding-left: 18px;
+}
+
+.panel-card li {
+    margin-bottom: 10px;
+    color: #415057;
+}
+
+.quote-card img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.quote-card p {
+    color: #67777f;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer {
+    background: #edf6f6;
+    border-top: 1px solid #dae7e5;
+    padding: 22px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    color: #2f7f69;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.footer-copy {
+    color: #7b8b91;
+    font-size: 12px;
+    text-transform: uppercase;
+    max-width: 520px;
+    line-height: 1.5;
+}
+
+.footer-links {
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #7b8b91;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .right-panel {
+        width: 100%;
+        padding: 0 34px 30px 34px;
+    }
+
+    .header-zone {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .info-text {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .filter-area {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .title {
+        font-size: 48px;
+    }
+
+    .small-label {
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+
+    .info-text {
+        font-size: 18px;
+    }
+
+    .filters {
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .filters button {
+        font-size: 17px;
+    }
+
+    .mark-read {
+        font-size: 17px;
+    }
+
+    .topbar {
+        justify-content: space-between;
+        padding: 0 18px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+    <div class="logo">MentorVerse</div>
+
+    <div class="menu">
+        <a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+        <a href="#"><i class="fa-solid fa-user-group"></i> My Mentors</a>
+        <a href="#" class="active"><i class="fa-solid fa-bell"></i> Notifications</a>
+        <a href="#"><i class="fa-regular fa-calendar"></i> Schedule</a>
+        <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </div>
+</div>
+
+<div class="page">
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="topbar-icon">
+                <i class="fa-regular fa-bell"></i>
+            </div>
+            <div class="topbar-icon">
+                <i class="fa-regular fa-circle-question"></i>
+            </div>
+        </div>
+
+        <div class="topbar-divider"></div>
+
+        <div class="topbar-user">
+            <div class="topbar-user-text">
+                <div class="topbar-user-name">Amal Ahmed</div>
+                <div class="topbar-user-id">ID: 882910</div>
+            </div>
+<div class="topbar-avatar">
+    <img src="https://img.freepik.com/free-vector/businesswoman-character-avatar-isolated_24877-60111.jpg" alt="Amal Ahmed">
+</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="main">
+            <div class="small-label">CURATED UPDATES</div>
+            <h1 class="title">Notifications</h1>
+
+            <div class="header-zone">
+                <p class="info-text">
+                    Stay informed with real-time updates from your mentors,
+                    research groups, and administrative services.
+                </p>
+
+                <div class="filter-area">
+                    <div class="filter-row">
+                        <div class="filters">
+                            <button class="active">All</button>
+                            <button>Unread</button>
+                            <button>Priority</button>
+                        </div>
+
+                        <div class="mark-read">
+                            <i class="fa-solid fa-check-double"></i>
+                            <span>Mark<br>as read</span>
+                        </div>
+                    </div>
+                    <div class="filter-line"></div>
+                </div>
+            </div>
+
+            <div class="today-label">TODAY</div>
+
+            <div class="card green-border notification-card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-cube"></i>
+                </div>
+
+                <div class="card-content">
+                    <span class="time">10:45 AM</span>
+                    <h3>Session Rescheduled: Advanced Neural Networks</h3>
+                    <p class="card-text">
+                        Dr. Sarah Al-Farsi moved today’s session to 4:00 PM.
+                        Please confirm your attendance in the portal.
+                    </p>
+                    <span class="badge">HIGH PRIORITY</span>
+                    <span class="action-link">Confirm Attendance</span>
+                </div>
+            </div>
+
+            <div class="card notification-card">
+                <div class="card-icon blue">
+                    <i class="fa-regular fa-file-lines"></i>
+                </div>
+
+                <div class="card-content">
+                    <span class="time">9:12 AM</span>
+                    <h3>New Research Resource Uploaded</h3>
+                    <p class="card-text">
+                        A new dataset for "Public Health Policy 2024"
+                        has been added to your curriculum resources.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="panel-card">
+                <div class="panel-small">MENTORSHIP PULSE</div>
+                <h4>NEXT MEETING</h4>
+                <p><strong>Dr. Sarah Al-Farsi</strong></p>
+                <p style="color:#6b7c84;">Today at 4:00 PM</p>
+                <button class="button">Prepare Notes</button>
+            </div>
+
+            <div class="panel-card">
+                <h4>ARCHIVE INSIGHTS</h4>
+                <ul>
+                    <li>12 unread research alerts</li>
+                    <li>4 new course materials</li>
+                </ul>
+            </div>
+
+            <div class="panel-card quote-card">
+                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="Study room">
+                <p>“The beautiful thing about learning is that no one can take it away from you.” – B.B. King</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>
+            <div class="footer-brand">MentorVerse</div>
+            <div class="footer-copy">© 2026 MentorVerse. Under the supervision of the Ministry of Education.</div>
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MentorVerse | Transcript</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #edf6f6;
+      color: #1f2a2e;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .dashboard-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #f7fbfa;
+      border-right: 1px solid #d9e7e4;
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar-top {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      color: #2f7f69;
+      margin-bottom: 10px;
+    }
+
+    .student-box {
+      background: #ffffff;
+      border: 1px solid #e0ece8;
+      border-radius: 20px;
+      padding: 18px 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #e8f3ef;
+      border: 2px solid #2f7f69;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2f7f69;
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .student-info h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .student-info p {
+      font-size: 13px;
+      color: #6f7f84;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar-nav a {
+      padding: 14px 16px;
+      border-radius: 14px;
+      color: #425358;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .sidebar-nav a:hover {
+      background: #edf6f3;
+      color: #2f7f69;
+    }
+
+    .sidebar-nav a.active {
+      background: #2f7f69;
+      color: #ffffff;
+    }
+
+    .support-btn {
+      background: #2f7f69;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      margin-top: 24px;
+    }
+
+    .main {
+      padding: 24px 30px 30px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .topbar-brand {
+      font-size: 18px;
+      font-weight: 800;
+      color: #2f7f69;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon {
+      font-size: 18px;
+      color: #6c7d81;
+    }
+
+    .top-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid #dce9e5;
+      padding: 10px 14px;
+      border-radius: 16px;
+    }
+
+    .top-profile .mini-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #e8f3ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2f7f69;
+      font-weight: 800;
+    }
+
+    .top-profile-text strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .top-profile-text span {
+      font-size: 12px;
+      color: #738388;
+    }
+
+    .page-head {
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      color: #8f7741;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .page-head h1 {
+      font-size: 46px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .page-head p {
+      color: #708086;
+      font-size: 16px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      background: #ffffff;
+      border: 1px solid #dce9e5;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+    }
+
+    .summary-card h4 {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #718187;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .summary-card .value {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .summary-card .sub {
+      font-size: 13px;
+      color: #6f8085;
+    }
+
+    .green {
+      color: #2f7f69;
+    }
+
+    .blue {
+      color: #4e7bc6;
+    }
+
+    .gold {
+      color: #a78539;
+    }
+
+    .purple {
+      color: #8d69d4;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dce9e5;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .card-head h2 {
+      font-size: 28px;
+    }
+
+    .card-head a {
+      color: #2f7f69;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .transcript-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+    }
+
+    .transcript-table thead th {
+      text-align: left;
+      font-size: 12px;
+      color: #748388;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 10px;
+      border-bottom: 1px solid #e6efec;
+    }
+
+    .transcript-table tbody td {
+      padding: 18px 10px;
+      border-bottom: 1px solid #edf3f1;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .course-code {
+      color: #2f7f69;
+      font-weight: 700;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      min-width: 42px;
+      text-align: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .grade-a-plus {
+      background: #e8f5ee;
+      color: #2f7f69;
+    }
+
+    .grade-a {
+      background: #eef4ff;
+      color: #4e7bc6;
+    }
+
+    .grade-b-plus {
+      background: #fff6e7;
+      color: #a78539;
+    }
+
+    .grade-b {
+      background: #f3eefc;
+      color: #8d69d4;
+    }
+
+    .side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .info-box {
+      background: #f7fbfa;
+      border: 1px solid #deebe7;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .info-box h3 {
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .info-box p {
+      color: #6f8085;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .mini-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .mini-row strong {
+      color: #243236;
+    }
+
+    .status-box {
+      background: linear-gradient(135deg, #2f7f69, #246755);
+      color: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 12px 24px rgba(47, 127, 105, 0.18);
+    }
+
+    .status-box h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .status-box p {
+      color: rgba(255,255,255,0.92);
+      line-height: 1.7;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .status-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .dashboard-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .page-head h1 {
+        font-size: 34px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">MentorVerse</div>
+
+        <div class="student-box">
+          <div class="avatar">R</div>
+          <div class="student-info">
+            <h4>Welcome, Student</h4>
+            <p>Academic Year 2026</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="student-dashboard.html">Dashboard</a>
+          <a href="performance.html">Performance</a>
+          <a href="transcript.html" class="active">Transcript</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+      </div>
+
+      <a href="#" class="support-btn">Get Support</a>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar-brand">MentorVerse</div>
+
+        <div class="topbar-right">
+          <span class="icon">🔔</span>
+          <span class="icon">❔</span>
+
+          <div class="top-profile">
+            <div class="top-profile-text">
+              <strong>Rawan Ahmed</strong>
+              <span>ID: 882910</span>
+            </div>
+            <div class="mini-avatar">R</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="page-head">
+        <div class="eyebrow">Academic Records</div>
+        <h1>Student Transcript</h1>
+        <p>View completed modules, grades, earned credits, and overall academic standing.</p>
+      </section>
+
+      <section class="summary-grid">
+        <div class="summary-card">
+          <h4>Current GPA</h4>
+          <div class="value green">3.92</div>
+          <div class="sub">Excellent academic performance</div>
+        </div>
+
+        <div class="summary-card">
+          <h4>Total Credits</h4>
+          <div class="value blue">104</div>
+          <div class="sub">Credits successfully completed</div>
+        </div>
+
+        <div class="summary-card">
+          <h4>Completed Courses</h4>
+          <div class="value gold">32</div>
+          <div class="sub">Across major and university requirements</div>
+        </div>
+
+        <div class="summary-card">
+          <h4>Academic Standing</h4>
+          <div class="value purple">Good</div>
+          <div class="sub">Eligible for next semester registration</div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="card">
+          <div class="card-head">
+            <h2>Transcript Overview</h2>
+            <a href="#">Download PDF →</a>
+          </div>
+
+          <table class="transcript-table">
+            <thead>
+              <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Semester</th>
+                <th>Grade</th>
+                <th>Credits</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="course-code">CS441</td>
+                <td>Artificial Intelligence</td>
+                <td>Semester 1</td>
+                <td><span class="grade-badge grade-a">A</span></td>
+                <td>3</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">CS442</td>
+                <td>Machine Learning</td>
+                <td>Semester 1</td>
+                <td><span class="grade-badge grade-a-plus">A+</span></td>
+                <td>3</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">CS330</td>
+                <td>Database Systems</td>
+                <td>Semester 2</td>
+                <td><span class="grade-badge grade-b-plus">B+</span></td>
+                <td>3</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">CS210</td>
+                <td>Data Structures</td>
+                <td>Semester 2</td>
+                <td><span class="grade-badge grade-a">A</span></td>
+                <td>3</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">CS310</td>
+                <td>Operating Systems</td>
+                <td>Semester 3</td>
+                <td><span class="grade-badge grade-b">B</span></td>
+                <td>4</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">CS350</td>
+                <td>Computer Networks</td>
+                <td>Semester 3</td>
+                <td><span class="grade-badge grade-a">A</span></td>
+                <td>3</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">MATH301</td>
+                <td>Advanced Linear Algebra</td>
+                <td>Semester 4</td>
+                <td><span class="grade-badge grade-b-plus">B+</span></td>
+                <td>4</td>
+              </tr>
+
+              <tr>
+                <td class="course-code">CS402</td>
+                <td>Cloud Computing Architecture</td>
+                <td>Semester 4</td>
+                <td><span class="grade-badge grade-a">A</span></td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="side-stack">
+          <div class="info-box">
+            <h3>Academic Summary</h3>
+            <div class="mini-list">
+              <div class="mini-row">
+                <span>Major</span>
+                <strong>Computer Science</strong>
+              </div>
+              <div class="mini-row">
+                <span>Level</span>
+                <strong>Senior Year</strong>
+              </div>
+              <div class="mini-row">
+                <span>Earned Credits</span>
+                <strong>104 / 132</strong>
+              </div>
+              <div class="mini-row">
+                <span>Last Semester GPA</span>
+                <strong>3.80</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-box">
+            <h3>Academic Standing</h3>
+            <p>
+              You are maintaining strong academic progress and remain on track
+              for graduation. Keep your GPA above 3.80 to preserve honors eligibility.
+            </p>
+            <span class="status-pill">On Track for Graduation</span>
+          </div>
+
+          <div class="info-box">
+            <h3>Quick Notes</h3>
+            <p>
+              Your transcript includes all completed courses up to the current
+              semester. Pending semester grades will appear here once officially approved.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

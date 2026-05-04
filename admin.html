@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #edf6f6;
+      color: #1f2a2e;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .dashboard-shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #f7fbfa;
+      border-right: 1px solid #d9e7e4;
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar-top {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      color: #2f7f69;
+      margin-bottom: 10px;
+    }
+
+    .Admin-box {
+      background: #ffffff;
+      border: 1px solid #e0ece8;
+      border-radius: 20px;
+      padding: 18px 14px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #e8f3ef;
+      border: 2px solid #2f7f69;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2f7f69;
+      font-weight: 800;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .Admin-info h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .Admin-info p {
+      font-size: 13px;
+      color: #6f7f84;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sidebar-nav a {
+      padding: 14px 16px;
+      border-radius: 14px;
+      color: #425358;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .sidebar-nav a:hover {
+      background: #edf6f3;
+      color: #2f7f69;
+    }
+
+    .sidebar-nav a.active {
+      background: #2f7f69;
+      color: #ffffff;
+    }
+
+    .support-btn {
+      background: #2f7f69;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: 500;
+      margin-top: 24px;
+    }
+
+    .btn {
+      border: 0px solid #2f7f69;
+      background: #2f7f69;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      border-radius: 5px;
+      font-weight: 600;
+      margin-top: 24px;
+    }
+
+    .flt {
+      border: 0px solid #2f7f69;
+      background: #DCEBEF;
+      color: #101E21;
+      text-align: center;
+      padding: 14px;
+      border-radius: 5px;
+      font-weight: 600;
+      margin-top: 24px;
+      outline: none;
+    }
+
+    .main {
+      padding: 24px 30px 30px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .topbar-brand {
+      font-size: 18px;
+      font-weight: 800;
+      color: #2f7f69;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon {
+      font-size: 18px;
+      color: #6c7d81;
+    }
+
+    .top-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid #dce9e5;
+      padding: 10px 14px;
+      border-radius: 16px;
+    }
+
+    .top-profile .mini-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #e8f3ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2f7f69;
+      font-weight: 800;
+    }
+
+    .top-profile-text strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .top-profile-text span {
+      font-size: 12px;
+      color: #738388;
+    }
+
+    .page-head {
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      color: #8f7741;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .page-head h1 {
+      font-size: 46px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .page-head p {
+      color: #708086;
+      font-size: 16px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .summary-card {
+      background: #ffffff;
+      border: 1px solid #dce9e5;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+    }
+
+    .summary-card h4 {
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #718187;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .summary-card .value {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .summary-card .sub {
+      font-size: 13px;
+      color: #6f8085;
+      line-height: 1.5;
+    }
+
+    .green { color: #2f7f69; }
+    .blue { color: #4e7bc6; }
+    .gold { color: #a78539; }
+    .purple { color: #8d69d4; }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dce9e5;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .card-head h2 {
+      font-size: 28px;
+    }
+
+    .card-head span {
+      color: #2f7f69;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .schedule-table th {
+      text-align: left;
+      font-size: 12px;
+      color: #748388;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 14px 10px;
+      border-bottom: 1px solid #e6efec;
+    }
+
+    .schedule-table td {
+      padding: 18px 10px;
+      border-bottom: 1px solid #edf3f1;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+    .course-name {
+      font-weight: 700;
+      color: #243236;
+    }
+
+    .course-code {
+      color: #2f7f69;
+      font-weight: 700;
+      font-size: 13px;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.lecture {
+      background: #e9f5ef;
+      color: #2f7f69;
+    }
+
+    .tag.lab {
+      background: #eef4ff;
+      color: #4e7bc6;
+    }
+
+    .tag.nolab {
+      background: #ffeeee;
+      color: #c6564e;
+    }
+
+    .tag.review {
+      background: #fff6e7;
+      color: #a78539;
+    }
+
+    .side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .info-box {
+      background: #ffffff;
+      border: 1px solid #deebe7;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .info-box h3 {
+      margin-bottom: 14px;
+      font-size: 24px;
+    }
+
+    .mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 15px;
+      color: #5c6c71;
+    }
+
+    .mini-row strong {
+      color: #1f2a2e;
+    }
+
+    .status-box {
+      background: linear-gradient(135deg, #2f7f69, #246755);
+      color: white;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 12px 24px rgba(47, 127, 105, 0.18);
+    }
+
+    .status-box h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .status-box p {
+      color: rgba(255,255,255,0.92);
+      line-height: 1.7;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .status-pill {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 850px) {
+      .dashboard-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .page-head h1 {
+        font-size: 34px;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+
+
+
+
+    .card_m {
+      width: 320px;
+      background: #f7f7f7;
+      border: 2px solid #2e7d5b;
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card_m h2 {
+      margin: 0 0 20px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    .section_m {
+      margin-bottom: 20px;
+    }
+
+    .section-title_m {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .subtext_m {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .row_m {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    /* Toggle Switch */
+    .switch_m {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .switch_m input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider_m {
+      position: absolute;
+      cursor: pointer;
+      background-color: #ccc;
+      border-radius: 20px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: 0.3s;
+    }
+
+    .slider_m:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    input:checked + .slider_m {
+      background-color: #2e7d5b;
+    }
+
+    input:checked + .slider_m:before {
+      transform: translateX(20px);
+    }
+
+    /* Buttons */
+    .btn-group_m {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn_m {
+      flex: 1;
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .btn_m.active_m {
+      background-color: #2e7d5b;
+      color: white;
+    }
+
+    .btn_m.inactive_m {
+      background-color: #ddd;
+      color: #555;
+    }
+
+    /* Progress bar */
+    .progress-container_m {
+      margin-top: 8px;
+    }
+
+    .progress-label_m {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .progress-bar_m {
+      margin-top: 6px;
+      width: 100%;
+      height: 6px;
+      background: #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill_m {
+      height: 100%;
+      width: 72%;
+      background: #2e7d5b;
+    }
+
+    /* Footer */
+    .advanced_m {
+      margin-top: 10px;
+      color: #2e7d5b;
+      font-weight: bold;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .advanced_m:hover {
+      text-decoration: underline;
+    }
+
+
+
+
+
+
+
+
+    .card_l {
+      width: 520px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .card_l h2 {
+      margin-bottom: 15px;
+      color: #2b2b2b;
+    }
+
+    .log-item_l {
+      display: flex;
+      align-items: flex-start;
+      background: #d9e4e8;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+
+    .icon_l {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .icon_l.green_l {
+      background: #b7e1cd;
+      color: #1b7f5f;
+    }
+
+    .icon_l.blue_l {
+      background: #c7d9ec;
+      color: #2b6aa3;
+    }
+
+    .log-content_l {
+      flex: 1;
+    }
+
+    .log-title_l {
+      font-weight: bold;
+      color: #2b2b2b;
+      margin-bottom: 4px;
+    }
+
+    .log-desc_l {
+      font-size: 13px;
+      color: #5a6b73;
+    }
+
+    .log-time_l {
+      font-size: 11px;
+      color: #6f7f86;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+
+    .top-row_l {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Hover effect */
+    .log-item_l:hover {
+      background: #cfdde2;
+      cursor: pointer;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+
+
+
+
+</head>
+<body>
+  <div class="dashboard-shell">
+
+<!-- side bar-->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">MentorVerse</div>
+        <div class="Admin-box">
+          <div class="avatar">A</div>
+          <div class="Admin-info">
+            <h4>Welcome, Admin</h4>
+            <p>Academic Year 2026</p>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="Admin.html" class="active">Dashboard</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+      </div>
+    </aside>
+
+<!-- top bar -->
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar-brand">MentorVerse - Settings</div>
+        <div class="topbar-right">
+          <span class="icon">🔔</span>
+          <span class="icon">❔</span>
+          <div class="top-profile">
+            <div class="top-profile-text">
+              <strong>Admin Name</strong>
+              <span>ID: 201234567</span>
+            </div>
+            <div class="mini-avatar">A</div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- page head -->
+      <section class="page-head">
+        <div class="eyebrow">ADMINISTRATIVE CONTROL</div>
+        <h1>System Overview</h1>
+        <p>Track student, advisors and configure MentorVerse settings.</p>
+        
+      </section>
+
+<!-- count cards -->
+      <section class="summary-grid">
+        <div class="summary-card">
+          <h4>Total Users</h4>
+          <div class="value green">12,840</div>
+          <div class="sub">+12% from last month</div>
+        </div>
+        <div class="summary-card">
+          <h4>Active Students</h4>
+          <div class="value blue">8,421</div>
+          <div class="sub">Active engagement: 88%</div>
+        </div>
+        <div class="summary-card">
+          <h4>Active Advisors</h4>
+          <div class="value gold">412</div>
+          <div class="sub">94% Verified Mentors</div>
+        </div>
+      </section>
+
+
+
+<!-- User Management -->
+      <section class="content-grid">
+        <div class="card">
+          <div class="card-head">
+            <h2>User Management</h2>
+            <span><button class="flt"> Filter</button></span>
+            <span><button class="btn"> + New User</button></span>
+          </div>
+
+<!-- table -->
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>IDENTITY</th>
+                <th>ROLE</th>
+                <th>INSTITUTION</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Dr. Advisor Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag review">Advisor</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag lecture">Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Dr. Advisor Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag review">Advisor</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag lecture">Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Student Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag lab">Student</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag lecture">Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Student Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag lab">Student</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag nolab">Not Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Student Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag lab">Student</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag nolab">Not Active</span>
+                    </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+        <div class="card_m">
+            <h2>System Settings</h2>
+
+            <!-- Maintenance Mode -->
+            <div class="section_m">
+                <div class="section-title_m">Maintenance Mode</div>
+                <div class="row_m">
+                <div class="subtext_m">Global system lockdown</div>
+                <label class="switch_m">
+                    <input type="checkbox" id="maintenanceToggle">
+                    <span class="slider_m"></span>
+                </label>
+                </div>
+            </div>
+
+            <!-- Advisor Registration -->
+            <div class="section_m">
+                <div class="section-title_m">Advisor Registration</div>
+                <div class="btn-group_m">
+                <button class="btn_m active_m" id="openBtn">OPEN</button>
+                <button class="btn_m inactive_m" id="inviteBtn">INVITATION ONLY</button>
+                </div>
+            </div>
+
+            <!-- Cloud Storage -->
+            <div class="section_m">
+                <div class="progress-label_m">
+                <span class="section-title_m">Cloud Storage</span>
+                <span id="usageText">72% Used</span>
+                </div>
+                <div class="progress-container_m">
+                <div class="progress-bar_m">
+                    <div class="progress-fill_m" id="progressFill"></div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Advanced -->
+            <div class="advanced_m">
+                ⚙ ADVANCED CONFIGURATION
+            </div>
+        </div>
+
+
+
+        
+
+
+
+
+        <div class="card_l">
+            <h2>Recent System Logs</h2>
+
+            <!-- Log Item 1 -->
+            <div class="log-item_l">
+                <div class="icon green_l">🛡️</div>
+                <div class="log-content_l">
+                <div class="top-row_l">
+                    <div class="log-title_l">Security Policy Updated</div>
+                    <div class="log-time_l">10 MINS AGO</div>
+                </div>
+                <div class="log-desc_l">
+                    Admin applied new MFA requirements for Advisor roles.
+                </div>
+                </div>
+            </div>
+
+            <!-- Log Item 2 -->
+            <div class="log-item_l">
+                <div class="icon blue_l">🗄️</div>
+                <div class="log-content_l">
+                <div class="top-row_l">
+                    <div class="log-title_l">Database Optimization</div>
+                    <div class="log-time_l">2 HOURS AGO</div>
+                </div>
+                <div class="log-desc_l">
+                    Weekly automated maintenance completed successfully.
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    
+        
+      </section>
+    </main>
+  </div> 
+
+
+
+  <script>
+  // Toggle buttons logic
+  const openBtn = document.getElementById("openBtn");
+  const inviteBtn = document.getElementById("inviteBtn");
+
+  openBtn.addEventListener("click", () => 
+  {
+    openBtn.classList.add("active_m");
+    openBtn.classList.remove("inactive_m");
+    inviteBtn.classList.remove("active_m");
+    inviteBtn.classList.add("inactive_m");
+  });
+
+  inviteBtn.addEventListener("click", () => 
+  {
+    inviteBtn.classList.add("active_m");
+    inviteBtn.classList.remove("inactive_m");
+    openBtn.classList.remove("active_m");
+    openBtn.classList.add("inactive_m");
+  });
+
+  // dynamically update storage 
+  function setStorageUsage(percent) 
+  {
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("usageText").innerText = percent + "% Used";
+  }
+
+</script>
+
+<script>
+  // dynamically add a log
+  function addLog(title, desc, time, type = "green")
+  {
+    const card = document.querySelector(".card");
+
+    const log = document.createElement("div");
+    log.className = "log-item";
+
+    log.innerHTML = `
+      <div class="icon ${type}">${type === "green" ? "🛡️" : "🗄️"}</div>
+      <div class="log-content">
+        <div class="top-row">
+          <div class="log-title">${title}</div>
+          <div class="log-time">${time}</div>
+        </div>
+        <div class="log-desc">${desc}</div>
+      </div>
+    `;
+
+    card.appendChild(log);
+  }
+
+  
+</script>
+
+<script>
+  function addUser() {
+    const table = document.querySelector("#userTable tbody");
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>
+        <div class="identity_U">
+          <div class="avatar_U">👤</div>
+          <div>
+            <div class="name_U">New User</div>
+            <div class="email_U">new.user@email.com</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge_U student_U">STUDENT</span></td>
+      <td>Unknown</td>
+      <td>
+        <div class="status_U">
+          <div class="dot_U"></div> Active
+        </div>
+      </td>
+    `;
+
+    table.appendChild(row);
+  }
+</script>
+
+
+</body>
+</html>
+
