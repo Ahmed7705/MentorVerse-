@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='student-schedule-page.css') }}">
+  <title>Schedule</title>
+
+</head>
+<body>
+  <div class="dashboard-shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">MentorVerse</div>
+
+        <div class="student-box">
+          <div class="avatar">S</div>
+          <div class="student-info">
+            <h4>Welcome, {{ firstname | default('Student') }}</h4>
+            <p>Academic Year 2026</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="/student-dashboard-page">Dashboard</a>
+          <a href="/student-schedule-page" class="active">Schedule</a>
+          <a href="/student-transcript-page">Transcript</a>
+          <a href="/student-notification-page">Notifications</a>
+          <a href="/student-settings-page">Settings</a>
+        </nav>
+      </div>
+
+        
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar-brand">MentorVerse</div>
+
+        <div class="topbar-right">
+          <span class="icon">🔔</span>
+
+          <div class="top-profile">
+            <div class="top-profile-text">
+              <strong> {{ firstname | default('Student Name') }} </strong>
+              <span>ID: {{ university_id | default('202101234') }}</span>
+            </div>
+            <div class="mini-avatar">S</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="page-head">
+        <div class="eyebrow">Weekly Planner</div>
+        <h1>Student Schedule</h1>
+        <p>Track your classes, labs, and office hours throughout the week.</p>
+      </section>
+
+      <section class="summary-grid">
+        <div class="summary-card">
+          <h4>Today's Classes</h4>
+          <div class="value green">3</div>
+          <div class="sub">Lectures and labs to attende today</div>
+        </div>
+
+        <div class="summary-card">
+          <h4>This Week Hours</h4>
+          <div class="value blue">18</div>
+          <div class="sub">Planned academic hours this week</div>
+        </div>
+
+        <div class="summary-card">
+          <h4>Next Class</h4>
+          <div class="value gold">10:00</div>
+          <div class="sub">Cloud Computing Architecture</div>
+        </div>
+
+        <div class="summary-card">
+          <h4>Free Slots</h4>
+          <div class="value purple">4</div>
+          <div class="sub">Available for study, tutoring, or meetings</div>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="card">
+          <div class="card-head">
+            <h2>Weekly Schedule</h2>
+          </div>
+
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Course</th>
+                <th>Type</th>
+                <th>Room</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Sunday</td>
+                <td>08:00 - 09:30</td>
+                <td>
+                  <div class="course-name">Artificial Intelligence</div>
+                  <span class="course-code">CS441</span>
+                </td>
+                <td><span class="tag lecture">Lecture</span></td>
+                <td>Room A102</td>
+              </tr>
+
+              <tr>
+                <td>Sunday</td>
+                <td>10:00 - 11:30</td>
+                <td>
+                  <div class="course-name">Cloud Computing Architecture</div>
+                  <span class="course-code">CS402</span>
+                </td>
+                <td><span class="tag lecture">Lecture</span></td>
+                <td>Room B101</td>
+              </tr>
+
+              <tr>
+                <td>Monday</td>
+                <td>09:00 - 10:30</td>
+                <td>
+                  <div class="course-name">Advanced Linear Algebra</div>
+                  <span class="course-code">MATH301</span>
+                </td>
+                <td><span class="tag lecture">Lecture</span></td>
+                <td>Room 204</td>
+              </tr>
+
+              <tr>
+                <td>Monday</td>
+                <td>12:00 - 01:30</td>
+                <td>
+                  <div class="course-name">Machine Learning Lab</div>
+                  <span class="course-code">CS442</span>
+                </td>
+                <td><span class="tag lab">Lab</span></td>
+                <td>Lab 301</td>
+              </tr>
+
+              <tr>
+                <td>Tuesday</td>
+                <td>11:00 - 12:00</td>
+                <td>
+                  <div class="course-name">General Math</div>
+                  <span class="course-code">MATH101</span>
+                </td>
+                <td><span class="tag lecture">Lecture</span></td>
+                <td>Room 102</td>
+              </tr>
+
+              <tr>
+                <td>Wednesday</td>
+                <td>08:00 - 09:30</td>
+                <td>
+                  <div class="course-name">Database Systems</div>
+                  <span class="course-code">CS330</span>
+                </td>
+                <td><span class="tag lecture">Lecture</span></td>
+                <td>Room C104</td>
+              </tr>
+
+              <tr>
+                <td>Thursday</td>
+                <td>01:00 - 02:30</td>
+                <td>
+                  <div class="course-name">General Physics</div>
+                  <span class="course-code">PHYS201</span>
+                </td>
+                <td><span class="tag lab">Lab</span></td>
+                <td>Lab 118</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+ 
+        <div class="side-stack">
+          <div class="info-box">
+            <h3>Today's Plan</h3>
+            <div class="mini-list">
+              <div class="mini-row">
+                <span>08:00 AM</span>
+                <strong>AI Lecture</strong>
+              </div>
+              <div class="mini-row">
+                <span>10:00 AM</span>
+                <strong>Cloud Computing</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+    <!-- Footer -->
+  <footer class="fp-footer">
+    <div class="fp-footer-inner">
+      <div class="fp-footer-left">
+        <div class="fp-footer-brand">MentorVerse</div>
+        <p class="fp-footer-copy">
+          &copy; 2026 MENTORVERSE.
+        </p>
+      </div>
+      <div class="fp-footer-links">
+            <a href="/Home-page">HOME</a>
+            <a href="/faq-page">FAQ</a>
+            <a href="/contact-us-page">CONTACT US</a>
+            <a href="/about-us-page">ABOUT US</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

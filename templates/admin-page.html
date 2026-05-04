@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin-page.css') }}">
+  <title>Admin</title>
+
+
+
+
+
+</head>
+<body>
+  <div class="dashboard-shell">
+
+<!-- side bar-->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="brand">MentorVerse</div>
+        <div class="Admin-box">
+          <div class="avatar">A</div>
+          <div class="Admin-info">
+            <h4>Welcome, Admin</h4>
+            <p>Academic Year 2026</p>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <!-- <a href="Admin-page.html" class="active">Dashboard</a>  -->
+          <!-- <a href="settings.html">Settings</a> -->
+        </nav>
+      </div>
+    </aside>
+
+<!-- top bar -->
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar-brand"></div>
+        <div class="topbar-right">
+          <div class="top-profile">
+            <div class="top-profile-text">
+              <strong>Admin Name</strong>
+              <span>ID: 201234567</span>
+            </div>
+            <div class="mini-avatar">A</div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- page head -->
+      <section class="page-head">
+        <div class="eyebrow">ADMINISTRATIVE CONTROL</div>
+        <h1>System Overview</h1>
+        <p>Track student, advisors and configure MentorVerse settings.</p>
+        
+      </section>
+
+<!-- count cards -->
+      <section class="summary-grid">
+        <div class="summary-card">
+          <h4>Total Users</h4>
+          <div class="value green">12,840</div>
+          <div class="sub">+12% from last month</div>
+        </div>
+        <div class="summary-card">
+          <h4>Active Students</h4>
+          <div class="value blue">8,421</div>
+          <div class="sub">Active engagement: 88%</div>
+        </div>
+        <div class="summary-card">
+          <h4>Active Advisors</h4>
+          <div class="value gold">412</div>
+          <div class="sub">94% Verified Mentors</div>
+        </div>
+      </section>
+
+
+
+<!-- User Management -->
+      <section class="content-grid">
+        <div class="card">
+          <div class="card-head">
+            <h2>User Management</h2>
+            <span><button class="flt"> Filter</button></span>
+            <span><button class="btn"> + New User</button></span>
+          </div>
+
+<!-- table -->
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>IDENTITY</th>
+                <th>ROLE</th>
+                <th>INSTITUTION</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Dr. Advisor Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag review">Advisor</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag lecture">Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Dr. Advisor Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag review">Advisor</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag lecture">Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Student Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag lab">Student</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag lecture">Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Student Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag lab">Student</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag nolab">Not Active</span>
+                    </td>
+              </tr>
+                            <tr>
+                    <td style="display: flex; flex-direction: row; padding: 18px 10px; vertical-align: middle;">
+                        <div class="avatar" >A</div>
+                        <div class="course-name" style="padding: 10px 10px; vertical-align: middle;" >Student Name </br> <span class="course-code">Email@university.edu</span></div> 
+                    </td>
+                    <td>
+                        <span class="tag lab">Student</span>
+                    </td>
+                    <td>
+                        <div class="course-name">Jazan University</div>
+                    </td>
+                    <td>
+                        <span class="tag nolab">Not Active</span>
+                    </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+        <div class="card_m">
+            <h2>System Settings</h2>
+
+            <!-- Maintenance Mode -->
+            <div class="section_m">
+                <div class="section-title_m">Maintenance Mode</div>
+                <div class="row_m">
+                <div class="subtext_m">Global system lockdown</div>
+                <label class="switch_m">
+                    <input type="checkbox" id="maintenanceToggle">
+                    <span class="slider_m"></span>
+                </label>
+                </div>
+            </div>
+
+            <!-- Advisor Registration -->
+            <div class="section_m">
+                <div class="section-title_m">Advisor Registration</div>
+                <div class="btn-group_m">
+                <button class="btn_m active_m" id="openBtn">OPEN</button>
+                <button class="btn_m inactive_m" id="inviteBtn">INVITATION ONLY</button>
+                </div>
+            </div>
+
+            <!-- Cloud Storage -->
+            <div class="section_m">
+                <div class="progress-label_m">
+                <span class="section-title_m">Cloud Storage</span>
+                <span id="usageText">72% Used</span>
+                </div>
+                <div class="progress-container_m">
+                <div class="progress-bar_m">
+                    <div class="progress-fill_m" id="progressFill"></div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Advanced -->
+            <div class="advanced_m">
+                ⚙ ADVANCED CONFIGURATION
+            </div>
+        </div>
+
+
+
+        
+
+
+
+
+        <div class="card_l">
+            <h2>Recent System Logs</h2>
+
+            <!-- Log Item 1 -->
+            <div class="log-item_l">
+                <div class="icon green_l">🛡️</div>
+                <div class="log-content_l">
+                <div class="top-row_l">
+                    <div class="log-title_l">Security Policy Updated</div>
+                    <div class="log-time_l">10 MINS AGO</div>
+                </div>
+                <div class="log-desc_l">
+                    Admin applied new MFA requirements for Advisor roles.
+                </div>
+                </div>
+            </div>
+
+            <!-- Log Item 2 -->
+            <div class="log-item_l">
+                <div class="icon blue_l">🗄️</div>
+                <div class="log-content_l">
+                <div class="top-row_l">
+                    <div class="log-title_l">Database Optimization</div>
+                    <div class="log-time_l">2 HOURS AGO</div>
+                </div>
+                <div class="log-desc_l">
+                    Weekly automated maintenance completed successfully.
+                </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    
+        
+      </section>
+      
+    </main>
+  </div> 
+
+
+
+  <script>
+  // Toggle buttons logic
+  const openBtn = document.getElementById("openBtn");
+  const inviteBtn = document.getElementById("inviteBtn");
+
+  openBtn.addEventListener("click", () => 
+  {
+    openBtn.classList.add("active_m");
+    openBtn.classList.remove("inactive_m");
+    inviteBtn.classList.remove("active_m");
+    inviteBtn.classList.add("inactive_m");
+  });
+
+  inviteBtn.addEventListener("click", () => 
+  {
+    inviteBtn.classList.add("active_m");
+    inviteBtn.classList.remove("inactive_m");
+    openBtn.classList.remove("active_m");
+    openBtn.classList.add("inactive_m");
+  });
+
+  // dynamically update storage 
+  function setStorageUsage(percent) 
+  {
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("usageText").innerText = percent + "% Used";
+  }
+
+</script>
+
+<script>
+  // dynamically add a log
+  function addLog(title, desc, time, type = "green")
+  {
+    const card = document.querySelector(".card");
+
+    const log = document.createElement("div");
+    log.className = "log-item";
+
+    log.innerHTML = `
+      <div class="icon ${type}">${type === "green" ? "🛡️" : "🗄️"}</div>
+      <div class="log-content">
+        <div class="top-row">
+          <div class="log-title">${title}</div>
+          <div class="log-time">${time}</div>
+        </div>
+        <div class="log-desc">${desc}</div>
+      </div>
+    `;
+
+    card.appendChild(log);
+  }
+
+  
+</script>
+
+<script>
+  function addUser() {
+    const table = document.querySelector("#userTable tbody");
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>
+        <div class="identity_U">
+          <div class="avatar_U">👤</div>
+          <div>
+            <div class="name_U">New User</div>
+            <div class="email_U">new.user@email.com</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge_U student_U">STUDENT</span></td>
+      <td>Unknown</td>
+      <td>
+        <div class="status_U">
+          <div class="dot_U"></div> Active
+        </div>
+      </td>
+    `;
+
+    table.appendChild(row);
+  }
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='error-page.css') }}">
+
+
+
+
+
+</head>
+
+<body>
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">MentorVerse</div>
+
+  <div class="nav-links">
+    <a href="/Home-page">Home</a>
+    <a href="/faq-page">FAQ</a>
+    <a href="/contact-us-page">Contact us</a>
+    <a href="/about-us-page">About us</a>
+  </div>
+
+  <div class="nav-right">
+      <a href="/login-page" class="login">Login</a>
+      <a href="/register-page" class="register">Register</a>
+  </div>
+</div>
+
+
+
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="left">
+    <small>ACCESS ERROR</small>
+    <div class="code">404</div>
+
+    <div class="title">Page Not Found</div>
+
+    <div class="desc">
+      We apologize, but it seems the page you are looking for has been moved,
+      deleted, or never existed.
+    </div>
+
+    <div class="buttons">
+      <div class="btn-main">
+        <a href="/Home-page" class="btn-main">Return Home</a>
+      </div>
+      <div class="btn-second">
+        <a href="/contact-us-page" class="btn-second">Get Help</a>
+      </div>
+    </div>
+    
+
+    <div class="bottom-info">
+      <div>
+        <h4>Frequently Asked Questions</h4>
+        <p>Go to frequently asked questions to check the most 
+          common questions.</p>
+      </div>
+
+      <div>
+        <h4>Contact Us</h4>
+        <p>Our support team is available around the clock.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="big-box">
+      <div class="card">
+        <h3>Path Not Found</h3>
+        <p>Even in the best libraries, some references may be misplaced.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <!-- Footer -->
+  <footer class="fp-footer">
+    <div class="fp-footer-inner">
+      <div class="fp-footer-left">
+        <div class="fp-footer-brand">MentorVerse</div>
+        <p class="fp-footer-copy">
+          &copy; 2026 MENTORVERSE.
+        </p>
+      </div>
+      <div class="fp-footer-links">
+            <a href="/Home-page">HOME</a>
+            <a href="/faq-page">FAQ</a>
+            <a href="/contact-us-page">CONTACT US</a>
+            <a href="/about-us-page">ABOUT US</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

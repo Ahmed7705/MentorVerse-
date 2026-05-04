@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications</title>
+  <meta name="description" content="Advisor dashboard showing assigned students overview with academic status and risk analysis." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='advisor-dashboard.css') }}">
+</head>
+<body class="adv-page">
+
+  <div class="adv-layout">
+
+    <!-- Sidebar -->
+    <aside class="adv-sidebar">
+      <div class="adv-sidebar-brand">
+        <a href="/Home-page" class="adv-logo">MentorVerse</a>
+        <p class="adv-logo-title">Student Notifications</p>
+        <p class="adv-logo-sub">University Portal</p>
+      </div>
+
+      <nav class="adv-sidebar-nav">
+        <a href="/student-dashboard-page" class="adv-nav-item" id="nav-dashboard">
+          <i class="fa-solid fa-chart-column"></i> Dashboard
+        </a>
+        <a href="/student-schedule-page" class="adv-nav-item" id="nav-performance"class="fa-regular fa-calendar">
+          <i class="fa-solid fa-table"></i> Schedule
+        </a>
+        <a href="/student-transcript-page" class="adv-nav-item" id="nav-performanc">
+          <i class="fa-solid fa-chart-line"></i> Transcript
+        </a>
+        <a href="/student-notification-page" class="adv-nav-item active" id="nav-notifications">
+          <i class="fa-solid fa-bell"></i> Notifications
+        </a>
+        <a href="/student-settings-page" class="adv-nav-item" id="nav-settings">
+          <i class="fa-solid fa-gear"></i> Settings
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <div class="adv-main">
+
+      <!-- Top Navbar -->
+      <header class="adv-topbar">
+        <div class="adv-topbar-left">
+          <a href="/Home-page" class="adv-topbar-brand">MentorVerse</a>
+        </div>
+        <div class="adv-topbar-right">
+          <button class="adv-icon-btn" id="notif-btn"><i class="fa-solid fa-bell"></i></button>
+          <div class="adv-user-box">
+            <div class="adv-user-info">
+              <h4>Student Name</h4>
+              <p>ID: 202101234</p>
+            </div>
+            <div class="adv-user-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="adv-content">
+
+        <!-- Page Header -->
+        <div class="adv-page-header">
+          <div>
+            <p class="adv-eyebrow">STUDENT NOTIFICATIONS</p>
+            <h1 class="adv-filter-label" id="adv-filter-title">Stay informed with real-time updates from your advisors, and administrative services.</h1>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="adv-filter-bar">
+          <div class="adv-filter-left">
+            <div class="adv-filter-group">
+              <span class="adv-filter-label">FILTER NOTIFICATIONS</span>
+              <div class="adv-filter-pills">
+                <button class="adv-pill active" id="filter-all">All Notification</button>
+                <button class="adv-pill" id="filter-high">Unread Notification</button>
+                <button class="adv-pill" id="filter-moderate">High Priority Notification</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Notifications Table -->
+        <div class="adv-table-card">
+          <table class="adv-table" id="students-table">
+            <thead>
+              <tr>
+                <th>NOTIFICATIONS</th>
+                <th>PRIORITY</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- NOTIFICATIONS 1 -->
+              <tr>
+                <td>
+                  <div class="adv-student-cell">
+                    <div>
+                      <h4>Notification Title</h4>
+                      <p>Notification Content Notification Content Notification Content Notification Content.</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="adv-risk-cell">
+                    <span class="adv-risk-badge high">
+                      <span class="adv-risk-dot high"></span> HIGH PRIORITY
+                    </span>
+                  </div>
+                </td>
+              </tr>             
+            <!-- NOTIFICATIONS 2 -->
+                    
+              <tr>
+                <td>
+                  <div class="adv-student-cell">
+                    <div>
+                      <h4>Notification Title</h4>
+                      <p>Notification Content Notification Content Notification Content Notification Content.</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="adv-risk-cell">
+                    <span class="adv-risk-badge moderate">
+                      <span class="adv-risk-dot moderate"></span> MODERATE PRIORITY
+                    </span>
+                  </div>
+                </td>
+              </tr>
+               <!-- NOTIFICATIONS 3 -->
+                    
+              <tr>
+                <td>
+                  <div class="adv-student-cell">
+                    <div>
+                      <h4>Notification Title</h4>
+                      <p>Notification Content Notification Content Notification Content Notification Content.</p>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="adv-risk-cell">
+                    <span class="adv-risk-badge stable">
+                      <span class="adv-risk-dot stable"></span> LOW PRIORITY
+                    </span>
+                  </div>
+                </td>
+              </tr>
+                
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="adv-footer">
+        <div class="adv-footer-inner">
+          <div class="adv-footer-left">
+            <div class="adv-footer-brand">MentorVerse</div>
+            <p>&copy; 2026 MENTORVERSE.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

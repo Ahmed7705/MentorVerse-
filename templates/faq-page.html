@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+
+  <!-- Navbar -->
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">MentorVerse</div>
+
+      <nav class="nav-links">
+        <a href="/Home-page">Home</a>
+        <a href="/faq-page">FAQ</a>
+        <a href="/contact-us-page">Contact us</a>
+        <a href="/about-us-page">About us</a>
+      </nav> 
+
+      <div class="nav-actions">
+        <a href="/login-page" class="login-link">Login</a>
+        <a href="/register-page" class="btn btn-primary small-btn">Register</a>
+      </div>
+    </div>
+  </header>
+
+<!-- Hero -->
+<section class="hero center">
+    <p class="small">HELP CENTER</p>
+    <h1>Frequently Asked Questions</h1>
+    <p class="desc">Everything you need to know about MentorVerse</p>
+</section>
+
+<!-- Layout -->
+<div class="faq-wrapper">
+
+    <!-- LEFT SIDE -->
+    <div class="categories">
+
+        <div class="help-box">
+            <h3>Still need help?</h3>
+            <p>Our support team is available 24/7</p>
+            <button class="btn">
+                <a href="/contact-us-page" class="btn btn-primary small-btn">Contact Us</a>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="faq-content">
+
+    <h2>General Questions</h2>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>1. What is MentorVerse?</h3>
+            <p>MentorVerse is an AI-powered academic advising 
+                platform that helps students and advisors make 
+                better academic decisions using data-driven insights.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>2. Who can use MentorVerse?</h3>
+            <p>The platform is designed for university students and 
+                academic advisors.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>3. What makes MentorVerse different from traditional advising?</h3>
+            <p>It uses artificial intelligence and predictive analytics to 
+                provide personalized and proactive guidance instead of 
+                relying only on manual advising.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>4. What is a digital twin in MentorVerse?</h3>
+            <p>A digital twin is a virtual representation of a student that 
+                reflects their academic progress, and performance
+                in real time.</p>
+        </div>
+
+        
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>5. Is MentorVerse available on mobile devices?</h3>
+            <p>Currently, it is a web-based platform, but mobile 
+                support may be developed in the future.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>6. What problem does MentorVerse solve?</h3>
+            <p>It addresses the limitations of traditional 
+                advising by improving efficiency, personalization, 
+                and early risk detection.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>7. Is MentorVerse only for one university?</h3>
+            <p>The current version is designed for a specific university, 
+                but it can be expanded to support multiple institutions.</p>
+        </div>
+
+        <h2>Features & Functionality</h2>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>1. How does MentorVerse predict student performance?</h3>
+            <p>It uses AI to analyze academic data 
+                and identify patterns that indicate future performance.</p>
+        </div>
+
+        
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>2. Can students simulate their academic plans?</h3>
+            <p>Yes, students can test different course scenarios and 
+                see how they affect their GPA and progress.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>3. What kind of recommendations does the system provide?</h3>
+            <p>It provides personalized suggestions such as course selection, 
+                study improvements, and risk mitigation strategies.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>4. How do advisors use MentorVerse?</h3>
+            <p>Advisors access dashboards that show student performance, 
+                predictions, and allow them to give feedback and 
+                recommendations.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>5. Does the system provide alerts?</h3>
+            <p>Yes, it sends alerts when a student is at 
+                risk or when important changes occur in 
+                their academic status.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>6. Can students interact with advisors through the platform?</h3>
+            <p>Yes, advisors can add notes and recommendations that 
+                students can view.</p>
+        </div>
+
+        <div class="faq-card" onclick="toggleFAQ(this)">
+            <h3>7. Is the platform updated in real time?</h3>
+            <p>Yes, the system updates student data continuously to provide accurate insights.</p>
+        </div>
+        
+        <!-- GREEN BOX 
+        <div class="cta-box">
+            <h2>Have a different question?</h2>
+            <p>We are here to answer any inquiries.</p>
+            <button class="btn light">Live Chat</button>
+            <button class="btn outline">Help Center</button>
+        </div>
+        -->
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div>
+            <h2>MentorVerse</h2>
+            <p>A leading platform connecting students with advisors.</p>
+            <p>© 2026 MENTORVERSE</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="/Home-page">HOME</a>
+            <a href="/faq-page">FAQ</a>
+            <a href="/contact-us-page">CONTACT US</a>
+            <a href="/about-us-page">ABOUT US</a>
+        </div>
+    </div>
+
+</footer>
+
+<script src="/js/script.js"></script>
+</body>
+</html>
